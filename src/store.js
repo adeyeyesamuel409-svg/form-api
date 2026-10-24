@@ -12,4 +12,6 @@ function now() {
   return new Date().toISOString();
 }
 
-module.exports = { users, threads, posts, newId, now };
+const validateRefs = true;
+
+module.exports = { users, threads, posts, newId, now, validateRefs };

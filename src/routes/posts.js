@@ -19,10 +19,10 @@ router.post("/", (req, res) => {
   if (!threadId || !userId || !body) {
     return res.status(400).json({ error: "threadId, userId and body are required" });
   }
-  if (!store.threads.has(threadId)) {
+  if (store.validateRefs && !store.threads.has(threadId)) {
     return res.status(400).json({ error: "threadId does not exist" });
   }
-  if (!store.users.has(userId)) {
+  if (store.validateRefs && !store.users.has(userId)) {
     return res.status(400).json({ error: "userId does not exist" });
   }
   const post = { id: store.newId(), threadId, userId, body, createdAt: store.now() };

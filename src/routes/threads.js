@@ -16,7 +16,7 @@ router.post("/", (req, res) => {
   if (!title || !userId) {
     return res.status(400).json({ error: "title and userId are required" });
   }
-  if (!store.users.has(userId)) {
+  if (store.validateRefs && !store.users.has(userId)) {
     return res.status(400).json({ error: "userId does not exist" });
   }
   const thread = { id: store.newId(), title, userId, createdAt: store.now() };
